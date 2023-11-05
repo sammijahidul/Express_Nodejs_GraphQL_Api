@@ -40,6 +40,7 @@ const ProjectType = new GraphQLObjectType({
     }),
 })
 
+// Query 
 const RootQuery = new GraphQLObjectType ({
     name: 'RootQueryType',
     fields: {
