@@ -4,7 +4,6 @@ import ClientRow from './ClientRow';
 import Spinner from './Spinner';
 import GET_CLIENTS from '../queries/clientQueries';
 
-
 const Client = () => {
     const { loading, error, data } = useQuery(GET_CLIENTS)
 
@@ -33,4 +32,4 @@ const Client = () => {
   )
 }
 
-export default Client
+export default Client;
