@@ -1,16 +1,50 @@
 import React, {useState} from 'react';
 import { FaList } from 'react-icons/fa';
 import { useMutation, useQuery } from '@apollo/client';
-
+import { CREATE_PROJECT } from '../mutations/projectMutation';
 import { GET_PROJECTS } from '../queries/projectQueries';
 import GET_CLIENTS from '../queries/clientQueries';
-import Spinner from './Spinner';
 
 const AddClientModal = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [clientId, setClientId] = useState();
   const [status, setStatus] = useState('new');
+
+//   const [createProject] = useMutation(CREATE_PROJECT, {
+//     variables: { name, description, status, clientId },
+//     // update cash to see project after create without refresh the page
+//     update: (cache, { data: { createProject } }) => {
+//         const { projects } = cache.readQuery({ query: GET_PROJECTS });
+//         const updatedProject = [...projects, createProject];
+
+//         cache.writeQuery({
+//             query: GET_PROJECTS,
+//             // data: { projects: projects.concat([createProject]) },
+//             data: { projects: updatedProject },
+//         });
+//     },
+//     onError: (error) => {
+//         console.error("Mutation error:", error);
+//       },
+//   });
+    const [createProject] = useMutation(CREATE_PROJECT, {
+        variables: { name, description, status, clientId },
+        update: (cache, { data }) => {
+        const newProject = data.addProject;
+        cache.modify({
+            fields: {
+            projects(existingProjects = []) {
+                return [...existingProjects, newProject];
+            }
+            }
+        });
+        },
+    onError: (error) => {
+      console.error("Mutation error:", error);
+    },
+  });
+  
 
   // Get clients for select
   const {loading, error, data} = useQuery(GET_CLIENTS);
@@ -23,6 +57,8 @@ const AddClientModal = () => {
         return alert("Please fill in all fields");
     }
     // create_Client(name, description, status, clientId);
+    createProject({ variables: { name, description, status, clientId } });
+
 
     setName('');
     setDescription('');
