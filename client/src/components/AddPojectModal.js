@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { FaList } from 'react-icons/fa';
 import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_PROJECT } from '../mutations/projectMutation';
-import { GET_PROJECTS } from '../queries/projectQueries';
 import GET_CLIENTS from '../queries/clientQueries';
 
 const AddClientModal = () => {
@@ -81,7 +80,7 @@ const AddClientModal = () => {
                 >
                     <div className='d-flex align-items-center'>
                         <FaList className='icon' />
-                        <div>Add Client</div>
+                        <div>Add Project</div>
                     </div>
                 </button>
 
