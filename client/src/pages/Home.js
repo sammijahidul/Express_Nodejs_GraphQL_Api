@@ -12,6 +12,7 @@ const Home = () => {
             <AddProjectModal />
         </div>
         <Project />
+        <hr />
         <Client /> 
     </>
   )

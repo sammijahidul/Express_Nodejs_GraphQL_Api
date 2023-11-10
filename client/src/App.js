@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import SingleProject from './pages/SingleProject';
 
-
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
@@ -23,9 +22,10 @@ const cache = new InMemoryCache({
       }
     }
   }
-})
+});
+
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  uri: 'http://localhost:4000/graphql',
   cache,
 });
 

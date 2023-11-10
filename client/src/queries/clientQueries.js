@@ -9,5 +9,5 @@ const GET_CLIENTS = gql`
         phone
     }
   }
-`
-export default GET_CLIENTS;
+`;
+export { GET_CLIENTS };

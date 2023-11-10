@@ -2,7 +2,7 @@ import React from 'react';
 import { FaTrash} from 'react-icons/fa';
 import { useMutation } from '@apollo/client'; 
 import { DELETE_CLIENT } from '../mutations/clientMutations';
-import GET_CLIENTS from '../queries/clientQueries';
+import { GET_CLIENTS } from '../queries/clientQueries';
 import { GET_PROJECTS } from '../queries/projectQueries';
 
 const ClientRow = ({ client }) => {
